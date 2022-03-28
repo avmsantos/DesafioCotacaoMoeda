@@ -1,4 +1,5 @@
 import 'package:bloc_state_management/desafio/cotacao.dart';
+import 'package:bloc_state_management/desafio/result.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,23 +41,22 @@ class ConvertMoedas extends StatefulWidget {
 
 class _ConvertMoedasState extends State<ConvertMoedas>
     with TickerProviderStateMixin {
-  List<int> selecionarItens = <int>[];
-
-  TabController? controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = TabController(
-      length: 3,
-      vsync: this,
-    );
-  }
+  // TabController? controller;
 
   // @override
-  // setState(() {
+  // void initState() {
+  //   super.initState();
+  //   controller = TabController(
+  //     length: 3,
+  //     vsync: this,
+  //   );
+  // }
+
+  // void _bolinhas() {
+  //   setState(() {
   //   controller.index = 1;
   // });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,19 +70,33 @@ class _ConvertMoedasState extends State<ConvertMoedas>
                 color: const Color(0xFF2C2C2C),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                child: const SizedBox(
+                child: SizedBox(
                   height: 70,
                   child: Center(
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.attach_money,
-                        size: 37,
+                    child: Container(
+                      decoration: ShapeDecoration(
+                        shape: Border.all(color: Colors.blue),
                       ),
-                      iconColor: Color(
-                        0xFFABB0AD,
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.attach_money,
+                          size: 37,
+                        ),
+                        iconColor: const Color(
+                          0xFFABB0AD,
+                        ),
+                        title: const Text(
+                          'Real',
+                          style: TextStyle(
+                            color: Color(0xFFABB0AD),
+                          ),
+                        ),
+                        selected: true,
+                        selectedColor: const Color(0xFF2555FF),
+                        onLongPress: () {
+                          print('funcionou');
+                        },
                       ),
-                      title: Text('Real',
-                          style: TextStyle(color: Color(0xFFABB0AD))),
                     ),
                   ),
                 ),
@@ -186,6 +200,7 @@ class _ConvertMoedasState extends State<ConvertMoedas>
             ),
           ],
         ),
+        const Resultado(),
         const Cotacao()
       ],
     );
