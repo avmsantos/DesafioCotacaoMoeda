@@ -1,3 +1,4 @@
+import 'package:bloc_state_management/desafio/class/moedas_class.dart';
 import 'package:bloc_state_management/desafio/class/reposotory.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class Cotacao extends StatefulWidget {
 }
 
 class _CotacaoState extends State<Cotacao> {
+  List<Moeda> selectItens2 = [];
   @override
   Widget build(BuildContext context) {
     final tabela2 = SegundaTela.tabela2;
@@ -28,16 +30,25 @@ class _CotacaoState extends State<Cotacao> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    leading: const Icon(
-                      Icons.attach_money,
-                      size: 37,
-                    ),
-                    iconColor: const Color(0xFFABB0AD),
-                    title: Text(
-                      tabela2[moeda].nome,
-                      style: const TextStyle(color: Color(0xFFABB0AD)),
-                    ),
-                  ),
+                      leading: const Icon(
+                        Icons.attach_money,
+                        size: 37,
+                      ),
+                      iconColor: const Color(0xFFABB0AD),
+                      title: Text(
+                        tabela2[moeda].nome,
+                        style: const TextStyle(color: Color(0xFFABB0AD)),
+                      ),
+                      selected: selectItens2.contains(tabela2[moeda]),
+                      selectedTileColor: Colors.blue,
+                      onTap: () {
+                        setState(() {
+                          (selectItens2.contains(tabela2[moeda]))
+                              ? selectItens2.remove(tabela2[moeda])
+                              : selectItens2.add(tabela2[moeda]);
+                          print(tabela2[moeda].nome);
+                        });
+                      }),
                 ),
               ),
             );
