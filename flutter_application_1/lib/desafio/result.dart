@@ -11,7 +11,9 @@ class Resultado extends StatefulWidget {
 class _ResultadoState extends State<Resultado> {
   @override
   Widget build(BuildContext context) {
+
     final tabela3 = TerceiraTela.tabela3;
+    
     return PageView(children: [
       ListView.builder(
         itemCount: tabela3.length,

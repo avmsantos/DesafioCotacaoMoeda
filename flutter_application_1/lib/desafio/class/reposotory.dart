@@ -1,4 +1,4 @@
-import 'package:bloc_state_management/desafio/class/moedas.dart';
+import 'package:bloc_state_management/desafio/class/moedas_class.dart';
 
 class PrimeiraTela {
   static List<Moeda> tabela = [
