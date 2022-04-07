@@ -1,4 +1,4 @@
-import 'package:bloc_state_management/desafio/class/reposotory.dart';
+import 'package:bloc_state_management/desafio/class/enum_conversao.dart';
 import 'package:flutter/material.dart';
 
 class CardsMoedas extends StatelessWidget {

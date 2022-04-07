@@ -1,4 +1,4 @@
-import 'package:bloc_state_management/desafio/class/reposotory.dart';
+import 'package:bloc_state_management/desafio/class/enum_conversao.dart';
 import 'package:bloc_state_management/desafio/cotacao_page.dart';
 import 'package:bloc_state_management/desafio/first_page.dart';
 import 'package:bloc_state_management/desafio/result_page.dart';
