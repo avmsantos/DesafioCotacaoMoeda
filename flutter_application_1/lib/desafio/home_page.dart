@@ -63,18 +63,6 @@ class _HomePageState extends State<HomePage> {
           const Resultado(),
         ],
       ),
-      floatingActionButton: SizedBox(
-        height: 50,
-        width: 130,
-        child: FloatingActionButton.extended(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          onPressed: () {},
-          label: const Text('Proximo'),
-          backgroundColor: const Color(0xFF2555FF),
-        ),
-      ),
     );
   }
 }
