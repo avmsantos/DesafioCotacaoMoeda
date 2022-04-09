@@ -1,11 +1,19 @@
 import 'package:bloc_state_management/desafio/class/enum_conversao.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/home_bloc.dart';
+import 'moedas_card.dart';
 
 class Cotacao extends StatefulWidget {
   final List<Conversao> moedas;
+  final PageController pageController;
+  final Conversao moedaBase;
   const Cotacao({
     Key? key,
     required this.moedas,
+    required this.pageController,
+    required this.moedaBase,
   }) : super(key: key);
 
   @override
@@ -13,42 +21,44 @@ class Cotacao extends StatefulWidget {
 }
 
 class _CotacaoState extends State<Cotacao> {
+  List<Conversao> selecaoDeMoedas = [];
+  late final _bloc = context.read<HomeBloc>();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.moedas.length,
-      itemBuilder: (context, index) {
-        final getTitulo = widget.moedas[index];
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: widget.moedas.length,
+            itemBuilder: (context, index) {
+              final getTitulo = widget.moedas[index];
 
-        return SizedBox(
-          height: 80,
-          child: Card(
-            color: const Color(0xFF2C2C2C),
-            margin: const EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ListTile(
-              leading: const Icon(
-                Icons.attach_money,
-                size: 37,
-              ),
-              iconColor: const Color(0xFFABB0AD),
-              title: Text(
-                MoedaMap.tituloMoeda(getTitulo),
-                style: const TextStyle(color: Color(0xFFABB0AD)),
-              ),
-              selectedTileColor: Colors.blue,
-              onTap: () {
-                setState(
-                  () {},
-                );
-              },
-            ),
+              return CardsMoedas(
+                getTitulo: getTitulo,
+                selecao: selecaoDeMoedas.contains(getTitulo),
+                //isso aqui é callBack que chama a função por parametro no home_page
+                click: () {
+                  setState(() {
+                    if (selecaoDeMoedas.contains(getTitulo)) {
+                      selecaoDeMoedas.remove(getTitulo);
+                    } else {
+                      selecaoDeMoedas.add(getTitulo);
+                    }
+                  });
+
+                  print(selecaoDeMoedas);
+                },
+              );
+            },
           ),
-        );
-        
-      },
+        ),
+        ElevatedButton(
+            onPressed: () async {
+              await _bloc.getMoedas(widget.moedaBase, selecaoDeMoedas);
+              widget.pageController.jumpToPage(2);
+            },
+            child: const Text('Continuar'))
+      ],
     );
   }
 }

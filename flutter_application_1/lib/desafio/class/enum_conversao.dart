@@ -2,8 +2,8 @@
 enum Conversao {
   USD,
   BRL,
-  ARS,
-  JPY,
+  EUR,
+  BTC,
   GBP,
 }
 
@@ -14,10 +14,10 @@ class MoedaMap {
         return 'Dolar Americano';
       case Conversao.BRL:
         return 'Real';
-      case Conversao.ARS:
-        return 'Peso Argentino';
-      case Conversao.JPY:
-        return 'Iene';
+      case Conversao.EUR:
+        return 'Euro';
+      case Conversao.BTC:
+        return 'Bitcoin';
       default:
         return 'Libra Esterlina';
     }
